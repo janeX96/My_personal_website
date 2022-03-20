@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "../pages/Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AboutMe from "../pages/AboutMe";
 import Projects from "../pages/Projects";
 import Contact from "../pages/Contact";
+import Navbar from "./Navbar/Navbar";
 
 const AppRouter = () => {
   return (
@@ -10,13 +10,15 @@ const AppRouter = () => {
       <Router>
         <div>
           <main>
+            <Navbar />
             <section>
-              <Switch>
-                <Route path="/" exact component={Home} />
-                <Route path="/aboutme" exact component={AboutMe} />
-                <Route path="/projects" exact component={Projects} />
-                <Route path="/contact" exact component={Contact} />
-              </Switch>
+              <Routes>
+                <Route path="/" element={<AboutMe />} />
+                <Route path="aboutme" element={<AboutMe />} />
+                <Route path="projects" element={<Projects />} />
+                <Route path="contact" element={<Contact />} />
+                <Route path="*" exact element={<AboutMe />} />
+              </Routes>
             </section>
           </main>
         </div>
