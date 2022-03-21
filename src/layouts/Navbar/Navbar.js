@@ -16,36 +16,62 @@ function Navbar() {
     <div className="header">
       <div className="logo-nav">
         <div className="textlogo-container">
-          <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+          <Link to="/" onClick={closeMobileMenu}>
             J-Klejn
           </Link>
         </div>
-        <ul className={click ? "nav-options active" : "nav-options"}>
-          <li className="option">
-            <Link to="aboutme" onClick={closeMobileMenu}>
-              O mnie
-            </Link>
-          </li>
-          <li className="option">
-            <Dropdown ref={(foo) => (dropdown = foo)}>
-              <DropdownTrigger>Projekty</DropdownTrigger>
-              <DropdownContent>
-                <ul>
-                  <li>1</li>
-                  <li>2</li>
-                  <li>3</li>
-                </ul>
-              </DropdownContent>
-            </Dropdown>
-          </li>
-          <li className="option">
-            <Link to="contact" onClick={closeMobileMenu}>
-              Kontakt
-            </Link>
-          </li>
-        </ul>
       </div>
-
+      <ul className={click ? "nav-options active" : "nav-options"}>
+        <li className="option">
+          <Link to="aboutme" onClick={closeMobileMenu}>
+            O mnie
+          </Link>
+        </li>
+        <li className="option">
+          <Dropdown ref={(foo) => (dropdown = foo)}>
+            <DropdownTrigger>Projekty</DropdownTrigger>
+            <DropdownContent>
+              <ul>
+                <li>
+                  <Link
+                    to="/"
+                    onClick={() => {
+                      dropdown.hide();
+                    }}
+                  >
+                    React JS
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/"
+                    onClick={() => {
+                      dropdown.hide();
+                    }}
+                  >
+                    Java
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/"
+                    onClick={() => {
+                      dropdown.hide();
+                    }}
+                  >
+                    Arduino
+                  </Link>
+                </li>
+              </ul>
+            </DropdownContent>
+          </Dropdown>
+        </li>
+        <li className="option">
+          <Link to="contact" onClick={closeMobileMenu}>
+            Kontakt
+          </Link>
+        </li>
+      </ul>
       <div className="mobile-menu" onClick={handleClick}>
         {click ? "X" : "..."}
       </div>
