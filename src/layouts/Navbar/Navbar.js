@@ -7,11 +7,15 @@ import Dropdown, {
   DropdownContent,
 } from "react-simple-dropdown";
 
-function Navbar() {
+function Navbar(props) {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
   const [chosenPage, setChosenPage] = useState("aboutme");
+
+  const changeChosenTab = (t) => {
+    setChosenPage(t);
+  };
 
   let dropdown = null;
 
@@ -19,7 +23,13 @@ function Navbar() {
     <div className="header">
       <div className="logo-nav">
         <div className="textlogo-container">
-          <Link to="/" onClick={closeMobileMenu}>
+          <Link
+            to="/"
+            onClick={() => {
+              closeMobileMenu();
+              changeChosenTab("aboutme");
+            }}
+          >
             J-Klejn
           </Link>
         </div>
@@ -34,7 +44,7 @@ function Navbar() {
             to="aboutme"
             onClick={() => {
               closeMobileMenu();
-              setChosenPage("aboutme");
+              changeChosenTab("aboutme");
             }}
           >
             O mnie
@@ -64,7 +74,7 @@ function Navbar() {
                     to="projects-reactjs"
                     onClick={() => {
                       dropdown.hide();
-                      setChosenPage("projects-reactjs");
+                      changeChosenTab("projects-reactjs");
                     }}
                   >
                     React JS
@@ -79,7 +89,7 @@ function Navbar() {
                     to="projects-java"
                     onClick={() => {
                       dropdown.hide();
-                      setChosenPage("projects-java");
+                      changeChosenTab("projects-java");
                     }}
                   >
                     Java
@@ -96,7 +106,7 @@ function Navbar() {
                     to="projects-arduino"
                     onClick={() => {
                       dropdown.hide();
-                      setChosenPage("projects-arduino");
+                      changeChosenTab("projects-arduino");
                     }}
                   >
                     Arduino
@@ -115,7 +125,7 @@ function Navbar() {
             to="contact"
             onClick={() => {
               closeMobileMenu();
-              setChosenPage("contact");
+              changeChosenTab("contact");
             }}
           >
             Kontakt

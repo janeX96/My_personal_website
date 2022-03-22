@@ -3,7 +3,6 @@ import AboutMe from "../pages/AboutMe";
 import ReactJSProjects from "../pages/Projects/ReactJSProjects";
 import JavaProjects from "../pages/Projects/JavaProjects";
 import ArduinoProjects from "../pages/Projects/ArduinoProjects";
-
 import Contact from "../pages/Contact";
 import Navbar from "./Navbar/Navbar";
 

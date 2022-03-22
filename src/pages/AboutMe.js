@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/App.scss";
 import photo from "../images/photo.JPG";
+import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 
 const AboutMe = () => {
   const [showExperience, setShowExperience] = useState(false);
@@ -90,7 +91,21 @@ const AboutMe = () => {
             >
               Umiejętności
             </dt>
-            {showSkills && <dd>skills</dd>}
+            {showSkills && (
+              <dd>
+                JavaScript: <FaStar />
+                <FaStar />
+                <FaStarHalfAlt />
+                <FaRegStar />
+                <FaRegStar />
+                <br />
+                Java: <FaStar />
+                <FaStar />
+                <FaStarHalfAlt />
+                <FaRegStar />
+                <FaRegStar />
+              </dd>
+            )}
 
             <dt
               className={`base-class ${
