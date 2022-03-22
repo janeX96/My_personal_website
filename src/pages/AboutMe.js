@@ -1,31 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/App.scss";
 import photo from "../images/photo.JPG";
 
 const AboutMe = () => {
+  const [showExperience, setShowExperience] = useState(false);
+  const [showEducation, setShowEducation] = useState(false);
+  const [showSkills, setShowSkills] = useState(false);
+  const [showInterests, setShowInterests] = useState(false);
+
+  const changeDetailsShow = (d) => {
+    switch (d) {
+      case "exp":
+        setShowExperience(!showExperience);
+        setShowEducation(false);
+        setShowSkills(false);
+        setShowInterests(false);
+        break;
+      case "edu":
+        setShowEducation(!showEducation);
+        setShowExperience(false);
+        setShowSkills(false);
+        setShowInterests(false);
+        break;
+      case "skills":
+        setShowSkills(!showSkills);
+        setShowEducation(false);
+        setShowExperience(false);
+        setShowInterests(false);
+        break;
+
+      case "ints":
+        setShowInterests(!showInterests);
+        setShowSkills(false);
+        setShowEducation(false);
+        setShowExperience(false);
+        break;
+
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="content-container">
       <div className="content-container__content">
-        <article
-          style={{
-            marginLeft: "30px",
-            marginTop: "30px",
-            display: "grid",
-            "grid-template-columns": "repeat(3, 1fr)",
-            "column-gap": "50px",
-          }}
-        >
-          <img
-            src={photo}
-            alt="zzz"
-            style={{
-              height: "300px",
-              border: "1px solid rgba(0, 0, 0, 0.15)",
-              "grid-row-start": "1",
-              "grid-row-end": "2",
-            }}
-          />
-          <div style={{ width: "30em" }}>
+        <article className="aboutme-section">
+          <img src={photo} alt="zzz" />
+          <div className="aboutme-section__description">
             <h1>Jan Klejn</h1>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
@@ -40,6 +61,47 @@ const AboutMe = () => {
               tempor ante aliquam sit amet.
             </p>
           </div>
+          <dl className="aboutme-section__details">
+            <dt
+              className={`base-class ${
+                showExperience ? "dt--chosen" : "dt--available"
+              }`}
+              onClick={() => changeDetailsShow("exp")}
+            >
+              Doświadczenie
+            </dt>
+            {showExperience && <dd>experience info</dd>}
+
+            <dt
+              className={`base-class ${
+                showEducation ? "dt--chosen" : "dt--available"
+              }`}
+              onClick={() => changeDetailsShow("edu")}
+            >
+              Wykształcenie
+            </dt>
+            {showEducation && <dd>edu info</dd>}
+
+            <dt
+              className={`base-class ${
+                showSkills ? "dt--chosen" : "dt--available"
+              }`}
+              onClick={() => changeDetailsShow("skills")}
+            >
+              Umiejętności
+            </dt>
+            {showSkills && <dd>skills</dd>}
+
+            <dt
+              className={`base-class ${
+                showInterests ? "dt--chosen" : "dt--available"
+              }`}
+              onClick={() => changeDetailsShow("ints")}
+            >
+              Zainteresowania
+            </dt>
+            {showInterests && <dd>interests</dd>}
+          </dl>
         </article>
       </div>
     </div>
