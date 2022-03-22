@@ -40,43 +40,63 @@ function Navbar() {
             O mnie
           </Link>
         </li>
-        <li
-          className={`base-class ${
-            chosenPage === "projects" ? "option--chosen" : "option"
-          }`}
-        >
+        <li className="option">
           <Dropdown ref={(foo) => (dropdown = foo)}>
-            <DropdownTrigger>Projekty</DropdownTrigger>
+            <DropdownTrigger
+              style={
+                chosenPage.split("-")[0] === "projects"
+                  ? { color: "black" }
+                  : {}
+              }
+            >
+              Projekty
+            </DropdownTrigger>
             <DropdownContent>
               <ul>
-                <li>
+                <li
+                  className={`base-class ${
+                    chosenPage === "projects-reactjs"
+                      ? "option--chosen"
+                      : "option"
+                  }`}
+                >
                   <Link
-                    to="/"
+                    to="projects-reactjs"
                     onClick={() => {
                       dropdown.hide();
-                      setChosenPage("projects");
+                      setChosenPage("projects-reactjs");
                     }}
                   >
                     React JS
                   </Link>
                 </li>
-                <li>
+                <li
+                  className={`base-class ${
+                    chosenPage === "projects-java" ? "option--chosen" : "option"
+                  }`}
+                >
                   <Link
-                    to="/"
+                    to="projects-java"
                     onClick={() => {
                       dropdown.hide();
-                      setChosenPage("projects");
+                      setChosenPage("projects-java");
                     }}
                   >
                     Java
                   </Link>
                 </li>
-                <li>
+                <li
+                  className={`base-class ${
+                    chosenPage === "projects-arduino"
+                      ? "option--chosen"
+                      : "option"
+                  }`}
+                >
                   <Link
-                    to="/"
+                    to="projects-arduino"
                     onClick={() => {
                       dropdown.hide();
-                      setChosenPage("projects");
+                      setChosenPage("projects-arduino");
                     }}
                   >
                     Arduino

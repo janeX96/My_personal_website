@@ -1,6 +1,6 @@
 import React from "react";
 
-function Contact(props) {
+function ReactJSProjects(props) {
   return (
     <div className="content-container">
       <div className="content-container__content"></div>
@@ -8,4 +8,4 @@ function Contact(props) {
   );
 }
 
-export default Contact;
+export default ReactJSProjects;
