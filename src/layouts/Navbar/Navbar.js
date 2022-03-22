@@ -11,7 +11,10 @@ function Navbar() {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+  const [chosenPage, setChosenPage] = useState("aboutme");
+
   let dropdown = null;
+
   return (
     <div className="header">
       <div className="logo-nav">
@@ -22,12 +25,26 @@ function Navbar() {
         </div>
       </div>
       <ul className={click ? "nav-options active" : "nav-options"}>
-        <li className="option">
-          <Link to="aboutme" onClick={closeMobileMenu}>
+        <li
+          className={`base-class ${
+            chosenPage === "aboutme" ? "option--chosen" : "option"
+          }`}
+        >
+          <Link
+            to="aboutme"
+            onClick={() => {
+              closeMobileMenu();
+              setChosenPage("aboutme");
+            }}
+          >
             O mnie
           </Link>
         </li>
-        <li className="option">
+        <li
+          className={`base-class ${
+            chosenPage === "projects" ? "option--chosen" : "option"
+          }`}
+        >
           <Dropdown ref={(foo) => (dropdown = foo)}>
             <DropdownTrigger>Projekty</DropdownTrigger>
             <DropdownContent>
@@ -37,6 +54,7 @@ function Navbar() {
                     to="/"
                     onClick={() => {
                       dropdown.hide();
+                      setChosenPage("projects");
                     }}
                   >
                     React JS
@@ -47,6 +65,7 @@ function Navbar() {
                     to="/"
                     onClick={() => {
                       dropdown.hide();
+                      setChosenPage("projects");
                     }}
                   >
                     Java
@@ -57,6 +76,7 @@ function Navbar() {
                     to="/"
                     onClick={() => {
                       dropdown.hide();
+                      setChosenPage("projects");
                     }}
                   >
                     Arduino
@@ -66,8 +86,18 @@ function Navbar() {
             </DropdownContent>
           </Dropdown>
         </li>
-        <li className="option">
-          <Link to="contact" onClick={closeMobileMenu}>
+        <li
+          className={`base-class ${
+            chosenPage === "contact" ? "option--chosen" : "option"
+          }`}
+        >
+          <Link
+            to="contact"
+            onClick={() => {
+              closeMobileMenu();
+              setChosenPage("contact");
+            }}
+          >
             Kontakt
           </Link>
         </li>
