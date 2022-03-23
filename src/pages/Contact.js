@@ -9,12 +9,7 @@ function Contact() {
   return (
     <div className="content-container">
       <div className="content-container__content">
-        <address
-          style={{
-            padding: "10%",
-            fontSize: "24px",
-          }}
-        >
+        <address className="address-section">
           <a href="mailto:janek.klejn@gmail.com">
             <AiOutlineMail /> janek.klejn@gmail.com
           </a>

@@ -77,6 +77,7 @@ function Navbar(props) {
                     onClick={() => {
                       dropdown.hide();
                       changeChosenTab("projects-reactjs");
+                      closeMobileMenu();
                     }}
                   >
                     React JS
@@ -92,6 +93,7 @@ function Navbar(props) {
                     onClick={() => {
                       dropdown.hide();
                       changeChosenTab("projects-java");
+                      closeMobileMenu();
                     }}
                   >
                     Java
@@ -109,6 +111,7 @@ function Navbar(props) {
                     onClick={() => {
                       dropdown.hide();
                       changeChosenTab("projects-arduino");
+                      closeMobileMenu();
                     }}
                   >
                     Arduino

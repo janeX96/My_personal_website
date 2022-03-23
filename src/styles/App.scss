@@ -32,16 +32,16 @@ body {
     align-items: flex-start;
     margin-top: 50px;
     min-height: 500px;
-    width: 900px;
+    width: 60rem;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.15);
 
     .aboutme-section {
       padding: 7%;
-      display: grid;
+      display: flex;
+      flex-wrap: wrap;
       grid-template-columns: repeat(2, 1fr);
-      // justify-content: center;
-      // column-gap: 20px;
+      column-gap: 4em;
 
       img {
         height: 300px;
@@ -73,14 +73,26 @@ body {
       }
     }
 
+    .address-section {
+      padding: 10%;
+      font-size: 24px;
+    }
+
     @media (max-width: 700px) {
-      width: 400px;
+      // width: 400px;
+      width: 20em;
+      margin-top: 2em;
       .aboutme-section {
         display: inline;
       }
       .aboutme-section__description {
         margin-top: 1em;
-        width: 20em;
+        width: 17em;
+      }
+      .address-section {
+        font-size: 20px;
+        margin-left: 0.7em;
+        margin-top: 0.7em;
       }
     }
   }
