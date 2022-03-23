@@ -6,6 +6,8 @@ import Dropdown, {
   DropdownTrigger,
   DropdownContent,
 } from "react-simple-dropdown";
+import { AiOutlineMenu } from "react-icons/ai";
+import { MdClose } from "react-icons/md";
 
 function Navbar(props) {
   const [click, setClick] = useState(false);
@@ -133,7 +135,15 @@ function Navbar(props) {
         </li>
       </ul>
       <div className="mobile-menu" onClick={handleClick}>
-        {click ? "X" : "..."}
+        {click ? (
+          <div className="menu-icon">
+            <MdClose />
+          </div>
+        ) : (
+          <div className="menu-icon">
+            <AiOutlineMenu />
+          </div>
+        )}
       </div>
     </div>
   );
