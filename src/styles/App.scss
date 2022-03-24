@@ -6,7 +6,6 @@ body {
   margin: 0 !important;
   font-family: "Lato", sans-serif;
   font-family: "Noto Sans Display", sans-serif;
-
   height: 100%;
   width: 100%;
   padding: 0px;
@@ -55,13 +54,14 @@ body {
       }
 
       &__details {
-        margin-top: 10%;
+        margin-top: 2em;
 
         .dt--chosen,
         .dt--available {
           margin-bottom: 5%;
           color: $text-color-light;
           cursor: pointer;
+          font-size: 18px;
         }
         :hover {
           color: $text-color-dark;
@@ -76,6 +76,33 @@ body {
     .address-section {
       padding: 10%;
       font-size: 24px;
+    }
+
+    .content__project-section {
+      display: grid;
+      padding: 7%;
+    }
+
+    .content__tech-name {
+      width: 60em;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 2%;
+    }
+
+    .content__pagination-container {
+      display: "center";
+
+      .pagination-icon {
+        font-size: 24px;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: $text-color-light;
+      }
+      :hover {
+        color: $text-color-dark;
+        cursor: pointer;
+      }
     }
 
     @media (max-width: 700px) {
