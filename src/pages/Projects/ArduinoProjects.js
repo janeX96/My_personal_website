@@ -1,20 +1,30 @@
 import React, { useState } from "react";
 import YouTube from "react-youtube";
 import { BsArrowLeftSquare, BsArrowRightSquare } from "react-icons/bs";
+import useMediaQuery from "use-mediaquery";
 
 function ReactJSProjects() {
   const [chosenProject, setChosenProject] = useState(0);
 
+  const resolutionMatches = useMediaQuery("(max-width:700px)");
+
+  let vidOpts = resolutionMatches
+    ? { height: "100%", width: "100%" }
+    : { height: "390px", width: "640px" };
   const projects = () => {
     return [
       <article className="content__project-section">
         <h2>Wrzutnia biblioteczna</h2>
-        <YouTube videoId="-e0UqLhcPsg" opts={{ height: "390", width: "640" }} />
+        <YouTube videoId="-e0UqLhcPsg" opts={vidOpts} />
         Opis
       </article>,
       <article className="content__project-section">
         <h2>Zdalnie sterowany pojazd</h2>
-        <YouTube videoId="QusvDx2cOwg" opts={{ height: "390", width: "640" }} />
+        <YouTube
+          className="project-section__video"
+          videoId="QusvDx2cOwg"
+          opts={vidOpts}
+        />
       </article>,
     ];
   };

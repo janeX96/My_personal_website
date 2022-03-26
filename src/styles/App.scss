@@ -80,11 +80,17 @@ body {
 
     .content__project-section {
       display: grid;
+      // width: 100%;
       padding: 7%;
+
+      .project-section__video {
+        // width: 20em;
+      }
     }
 
     .content__tech-name {
-      width: 60em;
+      // width: 60em;
+      width: 200px;
       margin: 0 auto;
       text-align: center;
       margin-top: 2%;
