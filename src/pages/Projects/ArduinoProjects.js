@@ -31,16 +31,13 @@ function ReactJSProjects() {
 
   const switchProject = (i) => {
     let projectIndex = chosenProject + i;
-    console.log("index:", projectIndex);
 
     if (projectIndex < 0) {
       projectIndex = projects().length - 1;
     } else if (projectIndex > projects().length - 1) {
       projectIndex = 0;
-      console.log("zmieniam na 0 bo: ", projectIndex, ">", projects.length - 1);
     }
 
-    console.log("changed index:", projectIndex);
     setChosenProject(projectIndex);
   };
 

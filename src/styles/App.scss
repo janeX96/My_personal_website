@@ -24,6 +24,38 @@ body {
   object-fit: contain;
   align-items: center;
 
+  .big-photo {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 120%;
+    height: 90%;
+    z-index: 2;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    column-gap: 0.1em;
+
+    img {
+      width: 70vw;
+      display: block;
+    }
+    :hover {
+      cursor: pointer;
+    }
+
+    .switch-arrow {
+      font-size: 52px;
+      color: $main-color-light;
+    }
+    :hover {
+      cursor: pointer;
+      color: $text-color-light;
+    }
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
@@ -85,6 +117,25 @@ body {
 
       .project-section__video {
         // width: 20em;
+      }
+
+      .project-section__gallery {
+        margin-top: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: center;
+        column-gap: 1em;
+
+        .gallery-arrow {
+          font-size: 32px;
+          color: $text-color-light;
+        }
+        :hover {
+          cursor: pointer;
+          color: $text-color-dark;
+        }
       }
     }
 
