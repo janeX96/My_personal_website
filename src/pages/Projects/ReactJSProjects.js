@@ -22,7 +22,6 @@ function ReactJSProjects(props) {
   const projectsGallery = [Object.values(wynaymenikGallery).sort()];
 
   const switchPhoto = (i) => {
-    console.log("sss");
     let photoIndex = chosenPhoto + i;
 
     if (photoIndex < 0) {
@@ -37,12 +36,17 @@ function ReactJSProjects(props) {
   const projects = () => {
     return [
       <article className="content__project-section">
-        <h2>wynayemnik.pl</h2>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel
-        tellus ultricies, tincidunt mi vitae, aliquet felis. Suspendisse
-        condimentum consectetur aliquam. Aenean odio nunc, tincidunt vel quam
-        eget, venenatis accumsan ligula. Proin rhoncus at felis nec euismod. Sed
-        varius justo ac orci iaculis congue. Nullam finibus felis metus.
+        <div className="project-section__description">
+          <h2>wynayemnik.pl</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            vel tellus ultricies, tincidunt mi vitae, aliquet felis. Suspendisse
+            condimentum consectetur aliquam. Aenean odio nunc, tincidunt vel
+            quam eget, venenatis accumsan ligula. Proin rhoncus at felis nec
+            euismod. Sed varius justo ac orci iaculis congue. Nullam finibus
+            felis metus.
+          </p>
+        </div>
         <div className="project-section__gallery">
           <MdArrowBackIos
             className="gallery-arrow"
@@ -51,7 +55,6 @@ function ReactJSProjects(props) {
           <img
             src={projectsGallery[chosenProject][chosenPhoto]}
             alt="..."
-            style={{ width: "600px" }}
             onClick={() => setShowBigPhoto(true)}
           />
           <MdArrowForwardIos
@@ -59,6 +62,7 @@ function ReactJSProjects(props) {
             onClick={() => switchPhoto(1)}
           />
         </div>
+        <div className="project-section__links">Github:</div>
       </article>,
     ];
   };

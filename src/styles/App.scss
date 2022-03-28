@@ -115,10 +115,6 @@ body {
       // width: 100%;
       padding: 7%;
 
-      .project-section__video {
-        // width: 20em;
-      }
-
       .project-section__gallery {
         margin-top: 2rem;
         display: flex;
@@ -136,6 +132,24 @@ body {
           cursor: pointer;
           color: $text-color-dark;
         }
+
+        img {
+          width: 40vw;
+          border: 1px solid rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 700px) {
+          column-gap: 0.5em;
+          .gallery-arrow {
+            font-size: 16px;
+          }
+          img {
+            width: 60vw;
+          }
+        }
+      }
+      .project-section__links {
+        margin-top: 32px;
       }
     }
 
@@ -173,6 +187,10 @@ body {
         margin-top: 1em;
         width: 17em;
       }
+      .project-section__description {
+        width: 17em;
+      }
+
       .address-section {
         font-size: 20px;
         margin-left: 0.7em;
