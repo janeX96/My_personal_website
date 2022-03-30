@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import YouTube from "react-youtube";
 import { BsArrowLeftSquare, BsArrowRightSquare } from "react-icons/bs";
 import useMediaQuery from "use-mediaquery";
+import LinkSection from "../../utilities/LinkSection";
 
 function ReactJSProjects() {
   const [chosenProject, setChosenProject] = useState(0);
@@ -16,7 +17,7 @@ function ReactJSProjects() {
       <article className="content__project-section">
         <h2>Wrzutnia biblioteczna</h2>
         <YouTube videoId="-e0UqLhcPsg" opts={vidOpts} />
-        Opis
+        {LinkSection("https://github.com/janeX96/Arduino_Book_Machine")}
       </article>,
       <article className="content__project-section">
         <h2>Zdalnie sterowany pojazd</h2>

@@ -50,16 +50,15 @@ const AboutMe = () => {
           <div className="aboutme-section__description">
             <h1>Jan Klejn</h1>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-              iaculis, ipsum a suscipit fermentum, erat massa semper libero, at
-              fermentum elit risus sed neque. Vivamus porttitor, dui at luctus
-              cursus, ipsum diam porta magna, vitae laoreet enim ligula et
-              sapien. Proin congue purus semper iaculis cursus. Aliquam vitae
-              urna lacus. Orci varius natoque penatibus et magnis dis parturient
-              montes, nascetur ridiculus mus. Quisque in dui ac velit sagittis
-              iaculis. Donec sed sodales ipsum. Sed sem urna, interdum eget
-              consequat a, dignissim in ligula. Etiam varius quam lorem, eget
-              tempor ante aliquam sit amet.
+              W trakcie studiów informatycznych zdobyłem doświadczenie w
+              wytwarzaniu oprogramowania z wykorzystaniem języka Java.
+              Realizowałem projekty Rest Api przy użyciu frameworka Spring Boot.
+              Przez ostatnie 5 miesięcy szkoliłem się w języku JavaScript. W
+              moim zespole projektowym pracy inżynierskiej byłem odpowiedzialny
+              za front-end aplikacji, który realizowałem z wykorzystaniem
+              biblioteki React JS. Aktualnie poszukuję stanowiska, na którym
+              mógłbym rozwijać swoje umiejętności w zakresie technologii
+              front-endowych.
             </p>
           </div>
           <dl className="aboutme-section__details">
@@ -71,7 +70,19 @@ const AboutMe = () => {
             >
               Doświadczenie
             </dt>
-            {showExperience && <dd>experience info</dd>}
+            {showExperience && (
+              <dd>
+                <b>11.2020 – 02.2021 [4 mies.]</b> <br />
+                <b>Programista C++</b> w B.A.T. MAREK ELIS
+                <br />
+                Krótki opis:
+                <br />
+                <b>
+                  Projektowanie i programowanie prototypu wrzutni bibliotecznej
+                  z wykorzystaniem platformy Arduino
+                </b>
+              </dd>
+            )}
 
             <dt
               className={`base-class ${
@@ -81,7 +92,19 @@ const AboutMe = () => {
             >
               Wykształcenie
             </dt>
-            {showEducation && <dd>edu info</dd>}
+            {showEducation && (
+              <dd>
+                <b>10.2018 – 02.2022</b> [3 lata 5 mies.]
+                <br />
+                <b>Polsko-Japońska Akademia Technik Komputerowych</b>
+                <br />
+                Kierunek: <b>Informatyka</b>
+                <br />
+                Specjalizacja: <b>Bazy danych</b>
+                <br />
+                Tytuł: <b>Inżynier</b>
+              </dd>
+            )}
 
             <dt
               className={`base-class ${
@@ -93,13 +116,25 @@ const AboutMe = () => {
             </dt>
             {showSkills && (
               <dd>
+                Java: <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaRegStar />
+                <FaRegStar />
+                <br />
                 JavaScript: <FaStar />
                 <FaStar />
                 <FaStarHalfAlt />
                 <FaRegStar />
                 <FaRegStar />
                 <br />
-                Java: <FaStar />
+                HTML: <FaStar />
+                <FaStar />
+                <FaStarHalfAlt />
+                <FaRegStar />
+                <FaRegStar />
+                <br />
+                CSS: <FaStar />
                 <FaStar />
                 <FaStarHalfAlt />
                 <FaRegStar />
@@ -115,7 +150,12 @@ const AboutMe = () => {
             >
               Zainteresowania
             </dt>
-            {showInterests && <dd>interests</dd>}
+            {showInterests && (
+              <dd>
+                Technologia, Robotyka, Animacja poklatkowa, Geologia, E-sport,
+                DIY.
+              </dd>
+            )}
           </dl>
         </article>
       </div>
