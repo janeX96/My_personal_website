@@ -139,6 +139,12 @@ const AboutMe = () => {
                 <FaStarHalfAlt />
                 <FaRegStar />
                 <FaRegStar />
+                <br />
+                SQL: <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStarHalfAlt />
+                <FaRegStar />
               </dd>
             )}
 
