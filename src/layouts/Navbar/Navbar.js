@@ -67,6 +67,24 @@ function Navbar(props) {
               <ul>
                 <li
                   className={`base-class ${
+                    chosenPage === "projects-javascript"
+                      ? "option--chosen"
+                      : "option"
+                  }`}
+                >
+                  <Link
+                    to="projects-javascript"
+                    onClick={() => {
+                      dropdown.hide();
+                      changeChosenTab("projects-javascript");
+                      closeMobileMenu();
+                    }}
+                  >
+                    JavaScript
+                  </Link>
+                </li>
+                <li
+                  className={`base-class ${
                     chosenPage === "projects-reactjs"
                       ? "option--chosen"
                       : "option"

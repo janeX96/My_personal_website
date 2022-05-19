@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>js game</title>
+    <link rel="stylesheet" href="./externalPages/towerDefenseGame/styles.css" />
+  </head>
+  <body>
+    <div class="game-container">
+      <canvas
+        class="battlefield"
+        id="battlefield"
+        width="1000px"
+        height="500px"
+      >
+      </canvas>
+      <canvas class="base" id="base" width="100px" height="500px"></canvas>
+      <div class="score-board">
+        <div>
+          TIME
+          <br />
+          <b id="time"></b>
+        </div>
+        <div>
+          KILLS
+          <br />
+          <b id="kills"></b>
+        </div>
+        <div>
+          HP
+          <br />
+          <b id="hp"></b>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./externalPages/towerDefenseGame/scripts.js" defer></script>
+</html>

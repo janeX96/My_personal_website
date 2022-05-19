@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AboutMe from "../pages/AboutMe";
+import JsProjects from "../pages/Projects/JsProjects";
 import ReactJSProjects from "../pages/Projects/ReactJSProjects";
 import JavaProjects from "../pages/Projects/JavaProjects";
 import ArduinoProjects from "../pages/Projects/ArduinoProjects";
@@ -17,6 +18,7 @@ const AppRouter = () => {
               <Routes>
                 <Route path="/" element={<AboutMe />} />
                 <Route path="aboutme" element={<AboutMe />} />
+                <Route path="projects-javascript" element={<JsProjects />} />
                 <Route path="projects-reactjs" element={<ReactJSProjects />} />
                 <Route path="projects-java" element={<JavaProjects />} />
                 <Route path="projects-arduino" element={<ArduinoProjects />} />
