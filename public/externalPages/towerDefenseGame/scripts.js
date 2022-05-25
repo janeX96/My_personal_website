@@ -4,23 +4,46 @@ var ctx = canvas.getContext("2d");
 var ctx2 = canvas2.getContext("2d");
 ctx.font = "15px Arial";
 var hpLabel = document.getElementById("hp");
+var bestScore = document.getElementById("bestScore");
 
-let myDmg = 10;
-let myHp = 100;
+//show the best score if there is info in local storage
+if (localStorage.getItem("score-kills") != null) {
+  bestScore.textContent = ` ${localStorage.getItem(
+    "score-kills"
+  )} kills in ${localStorage.getItem(
+    "score-time-min"
+  )} min ${localStorage.getItem("score-time-sec")}sec - ${localStorage.getItem(
+    "score-waves"
+  )} waves`;
+}
+
+var weaponName = "simple gun";
+var myDmg = 10;
+
+//score board variables
+var myHp = 100;
 hpLabel.style.color = "red";
 hpLabel.textContent = myHp;
-let kills = 0;
+var kills = 0;
 var killsLabel = document.getElementById("kills");
 killsLabel.textContent = kills;
 var timer = document.getElementById("time");
-let timeMin = 0;
-let timeSec = 0;
+var timeMin = 0;
+var timeSec = 0;
+var timerInterval = null;
+
+//cannon coords
 const cannonX = 1000;
 const cannonY = 250;
 
-let enemiesArray = [];
-let ammoArray = [1, 1, 1];
-let ammoLoadTime = 1000;
+var enemiesArray = [];
+var ammoArray = [1, 1, 1];
+var ammoLoadTime = 1000;
+
+var waveCounter = 0;
+var waveNumber = document.getElementById("waveNumber");
+waveNumber.textContent = waveCounter;
+var wave = true;
 
 function drawCannon() {
   ctx.beginPath();
@@ -74,7 +97,7 @@ const Enemy = function (hp, speed, dmg) {
 
   this.hit = (dmg) => {
     this.hp -= dmg;
-    if (this.hp === 0) {
+    if (this.hp <= 0) {
       this.shotDown = true;
       this.stop();
       kills += 1;
@@ -87,7 +110,7 @@ const Enemy = function (hp, speed, dmg) {
     this.clear();
     this.x = 0;
     this.y = 0;
-    this.clear();
+    this.hp = 0;
   };
 };
 
@@ -128,6 +151,8 @@ const Bullet = function (destX, destY) {
       0,
       2 * Math.PI
     );
+    ctx.fillStyle = "black";
+    ctx.fill();
     ctx.stroke();
     this.lastX = this.nextX;
     this.lastY = this.nextY;
@@ -173,21 +198,106 @@ const Bullet = function (destX, destY) {
   };
 };
 
-function spawnEnemies() {
-  var e1 = new Enemy(100, 10, 20);
-  var e2 = new Enemy(50, 10, 15);
-  var e3 = new Enemy(80, 60, 10);
-  var e4 = new Enemy(80, 60, 10);
-  var e5 = new Enemy(80, 60, 40);
-  enemiesArray = [e1, e2, e3, e4, e5];
-  enemiesArray.forEach((e) => {
-    e.start();
-  });
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+function startWave() {
+  if (enemiesArray.length == 0 && myHp > 0) {
+    //show info about new wave for 5s
+    document.getElementById("info").style.display = "grid";
+    document.getElementById("info").textContent = `Wave ${waveCounter + 1}`;
+    setTimeout(() => {
+      document.getElementById("info").style.display = "none";
+    }, 5000);
+
+    wave = true;
+    waveCounter += 1;
+    waveNumber.textContent = waveCounter;
+    let waveInterval = setInterval(() => {
+      let timeout;
+      if (enemiesArray.length == 0) {
+        timeout = 1;
+      } else {
+        timeout = getRandomIntInclusive(2, 5);
+      }
+
+      setTimeout(() => {
+        if (wave) {
+          //get random hp
+          let hp = getRandomIntInclusive(1, 25 * waveCounter);
+          let dmg;
+          let speed;
+
+          if (hp >= 25) {
+            dmg = getRandomIntInclusive(4, 20) * waveCounter;
+            speed = getRandomIntInclusive(20, 50);
+          } else {
+            dmg = getRandomIntInclusive(4, 10) * waveCounter;
+            speed = getRandomIntInclusive(4, 15);
+          }
+
+          var enemy = new Enemy(hp, speed, dmg);
+          console.log("new enemy spawned");
+          enemiesArray.push(enemy);
+          enemy.start();
+        }
+      }, 1000 * timeout);
+    }, 1000);
+
+    setTimeout(() => {
+      wave = false;
+      clearInterval(waveInterval);
+
+      if (myHp > 0) {
+        setTimeout(() => {
+          startWave();
+        }, 5000);
+      }
+    }, 20000);
+  } else {
+    setTimeout(() => {
+      let exist = false;
+      enemiesArray.forEach((e) => {
+        if (e.hp != 0) {
+          exist = true;
+        }
+      });
+
+      if (!exist) {
+        enemiesArray = [];
+      }
+      startWave();
+    }, 1000);
+  }
+}
+
+function start() {
+  startWave();
+}
+// function spawnEnemies() {
+//   var e1 = new Enemy(100, 10, 20);
+//   var e2 = new Enemy(50, 10, 15);
+//   var e3 = new Enemy(80, 60, 10);
+//   var e4 = new Enemy(80, 60, 10);
+//   var e5 = new Enemy(80, 60, 40);
+//   enemiesArray = [e1, e2, e3, e4, e5];
+//   enemiesArray.forEach((e) => {
+//     e.start();
+//   });
+// }
 
 function getDamage(dmg) {
   myHp -= dmg;
   hpLabel.textContent = myHp;
+
+  if (myHp <= 0) {
+    myHp = 0;
+    hpLabel.textContent = 0;
+    death();
+  }
 }
 
 function drawAmmo() {
@@ -208,7 +318,7 @@ function drawAmmo() {
 }
 
 function startTimer() {
-  setInterval(() => {
+  timerInterval = setInterval(() => {
     timeSec += 1;
     if (timeSec === 60) {
       timeMin += 1;
@@ -244,12 +354,70 @@ canvas.addEventListener(
   false
 );
 
+function death() {
+  wave = false;
+  clearInterval(timerInterval);
+  enemiesArray.forEach((e) => {
+    e.stop();
+  });
+  ctx.fillStyle = "green";
+  ctx.fillRect(150, 100, 700, 300);
+
+  ctx.fillStyle = "red";
+  ctx.font = "35px Arial";
+  ctx.fillText(
+    `SCORE: ${kills}kills in ${timeMin}min ${timeSec}sec (${waveCounter} waves)`,
+    200,
+    200
+  );
+
+  // if (localStorage.getItem("user") == null) {
+  //   document.getElementById("summary").style.display = "grid";
+  // } else {
+  saveScore(false);
+  // }
+  document.getElementById("reloadButton").style.display = "grid";
+}
+
 setInterval(() => {
   ammoArray[ammoArray.indexOf(0)] = 1;
   drawAmmo();
 }, ammoLoadTime);
 
+function saveScore(isNew = true) {
+  // if (isNew) {
+  //   let userName = document.getElementById("nickname").value;
+  //   localStorage.setItem("user", userName);
+  // }
+
+  if (
+    isNew ||
+    localStorage.getItem("score-waves") < waveCounter ||
+    (localStorage.getItem("score-waves") == waveCounter &&
+      localStorage.getItem("score-kills") < kills)
+  ) {
+    localStorage.setItem("score-kills", kills);
+    localStorage.setItem("score-time-min", timeMin);
+    localStorage.setItem("score-time-sec", timeSec);
+    localStorage.setItem("score-waves", waveCounter);
+  }
+}
+
+function drawWeaponParams() {
+  ctx2.font = "16px Arial";
+  ctx2.fillStyle = "blue";
+  ctx2.fillText(weaponName, 20, 20);
+  ctx2.fillStyle = "red";
+  ctx2.fillText(`dmg: ${myDmg}`, 20, 40);
+}
+
+function reloadGame() {
+  window.location.reload();
+}
+
 startTimer();
 drawCannon();
-spawnEnemies();
+// spawnEnemies();
+start();
 drawAmmo();
+drawWeaponParams();

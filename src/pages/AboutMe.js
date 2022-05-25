@@ -53,7 +53,7 @@ const AboutMe = () => {
               W trakcie studiów informatycznych zdobyłem doświadczenie w
               wytwarzaniu oprogramowania z wykorzystaniem języka Java.
               Realizowałem projekty Rest Api przy użyciu frameworka Spring Boot.
-              Przez ostatnie 5 miesięcy szkoliłem się w języku JavaScript. W
+              Przez ostatnie 9 miesięcy szkoliłem się w języku JavaScript. W
               moim zespole projektowym pracy inżynierskiej byłem odpowiedzialny
               za front-end aplikacji, który realizowałem z wykorzystaniem
               biblioteki React JS. Aktualnie poszukuję stanowiska, na którym
@@ -124,13 +124,13 @@ const AboutMe = () => {
                 <br />
                 JavaScript: <FaStar />
                 <FaStar />
-                <FaStarHalfAlt />
+                <FaStar />
                 <FaRegStar />
                 <FaRegStar />
                 <br />
                 HTML: <FaStar />
                 <FaStar />
-                <FaStarHalfAlt />
+                <FaStar />
                 <FaRegStar />
                 <FaRegStar />
                 <br />

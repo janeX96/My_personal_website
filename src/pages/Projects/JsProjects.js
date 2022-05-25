@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BsArrowLeftSquare, BsArrowRightSquare } from "react-icons/bs";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { AiFillGithub } from "react-icons/ai";
-
+import gameScreen1 from "../../images/screen1.png";
 function JsProjects(props) {
   const [chosenProject, setChosenProject] = useState(0);
   const [chosenPhoto, setchosenPhoto] = useState(0);
@@ -66,17 +66,19 @@ function JsProjects(props) {
     return [
       <>
         <div className="project-section__description">
-          <h2>gra</h2>
-          <p>Gra typu tower defense napisana w html, javaScript i css</p>
+          <h2>Tower Defense Game</h2>
+          <p>Gra typu tower defense napisana w html, javaScript i css.</p>
+          <p>strzelanie: lewy przycisk myszy</p>
           <p>
-            <a href="towerDefense.html">Zagraj (tylko PC)</a>
+            <a href="towerDefense.html" style={{ fontSize: "32px" }}>
+              Zagraj (tylko PC)
+            </a>
           </p>
+          <img src={gameScreen1} alt="..." style={{ width: "600px" }}></img>
         </div>
 
-        {/* {gallerySection()}
-        {linkSection(
-          "https://github.com/janeX96/praca-inzynierska_wynayemnik-react"
-        )} */}
+        {/* {gallerySection()} */}
+        {linkSection("https://github.com/janeX96/js_game/tree/develop")}
       </>,
     ];
   };

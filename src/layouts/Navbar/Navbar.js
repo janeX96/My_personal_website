@@ -101,7 +101,7 @@ function Navbar(props) {
                     React JS
                   </Link>
                 </li>
-                <li
+                {/* <li
                   className={`base-class ${
                     chosenPage === "projects-java" ? "option--chosen" : "option"
                   }`}
@@ -116,7 +116,7 @@ function Navbar(props) {
                   >
                     Java
                   </Link>
-                </li>
+                </li> */}
                 <li
                   className={`base-class ${
                     chosenPage === "projects-arduino"
