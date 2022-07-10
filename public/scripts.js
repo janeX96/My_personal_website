@@ -6,6 +6,22 @@ ctx.font = "15px Arial";
 var hpLabel = document.getElementById("hp");
 var bestScore = document.getElementById("bestScore");
 
+//images
+const tankImg = new Image();
+tankImg.src = "./tank.png";
+const bulletImg = new Image();
+bulletImg.src = "./bullet.png";
+
+const explosionImgs = [];
+
+function loadExplosionImages() {
+  for (let index = 0; index < 7; index++) {
+    let explosionImg = new Image();
+    explosionImg.src = `./images/explosion/Explosion_${index + 1}.png`;
+    explosionImgs.push(explosionImg);
+  }
+}
+
 //show the best score if there is info in local storage
 if (localStorage.getItem("score-kills") != null) {
   bestScore.textContent = ` ${localStorage.getItem(
@@ -62,11 +78,11 @@ const Enemy = function (hp, speed, dmg) {
   this.speed = speed;
   this.dmg = dmg;
 
-  this.x = 0;
+  this.x = -10;
   this.y = getRandomInt(0, 500);
 
   this.width = 50;
-  this.height = 25;
+  this.height = 40;
 
   this.shotDown = false;
   this.arrived = false;
@@ -77,8 +93,11 @@ const Enemy = function (hp, speed, dmg) {
 
   this.draw = () => {
     this.x += 1;
-    ctx.fillStyle = "grey";
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    // ctx.fillStyle = "grey";
+    // ctx.fillRect(this.x, this.y, this.width, this.height);
+
+    ctx.drawImage(tankImg, this.x, this.y, this.width, this.height);
+
     ctx.fillStyle = "red";
     ctx.fillText(this.hp, this.x, this.y - 10);
   };
@@ -99,6 +118,13 @@ const Enemy = function (hp, speed, dmg) {
     this.hp -= dmg;
     if (this.hp <= 0) {
       this.shotDown = true;
+      animateExplosion(
+        ctx,
+        this.x - 20,
+        this.y - 20,
+        this.width + 50,
+        this.height + 50
+      );
       this.stop();
       kills += 1;
       killsLabel.textContent = kills;
@@ -225,7 +251,7 @@ function startWave() {
       }
 
       setTimeout(() => {
-        if (wave) {
+        if (wave && enemiesArray.length < 10) {
           //get random hp
           let hp = getRandomIntInclusive(1, 25 * waveCounter);
           let dmg;
@@ -290,6 +316,7 @@ function start() {
 // }
 
 function getDamage(dmg) {
+  animateExplosion(ctx2, 30, getRandomInt(10, 490), 100, 100);
   myHp -= dmg;
   hpLabel.textContent = myHp;
 
@@ -307,11 +334,15 @@ function drawAmmo() {
     .slice()
     .reverse()
     .forEach((element) => {
-      ctx2.fillStyle = "grey";
-      ctx2.fillRect(40, y, 50, 20);
+      // ctx2.fillStyle = "grey";
+      // ctx2.fillRect(40, y, 50, 20);
+      // ctx2.clearRect(20, y, 100, 70);
       if (element === 1) {
-        ctx2.fillStyle = "blue";
-        ctx2.fillRect(40, y, 50, 20);
+        // ctx2.fillStyle = "blue";
+        // ctx2.fillRect(40, y, 50, 20);
+        ctx2.drawImage(bulletImg, 20, y, 100, 70);
+      } else {
+        ctx2.clearRect(20, y, 100, 70);
       }
       y += 25;
     });
@@ -415,9 +446,27 @@ function reloadGame() {
   window.location.reload();
 }
 
+function animateExplosion(ctx, x, y, w, h) {
+  let n = 0;
+  let animationInterval = setInterval(() => {
+    if (n < 7) {
+      ctx.clearRect(x, y, w, h);
+      ctx.drawImage(explosionImgs[n], x, y, w, h);
+      n++;
+      w += 3;
+      h += 3;
+    } else {
+      ctx.clearRect(x, y, w, h);
+      clearInterval(animationInterval);
+    }
+  }, 100);
+}
+
+loadExplosionImages();
 startTimer();
 drawCannon();
 // spawnEnemies();
 start();
 drawAmmo();
 drawWeaponParams();
+console.log(explosionImgs);
