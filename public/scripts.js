@@ -97,9 +97,9 @@ const Enemy = function (hp, speed, dmg) {
     // ctx.fillRect(this.x, this.y, this.width, this.height);
 
     ctx.drawImage(tankImg, this.x, this.y, this.width, this.height);
-
-    ctx.fillStyle = "red";
-    ctx.fillText(this.hp, this.x, this.y - 10);
+    ctx.fillStyle = "#b31212";
+    // ctx.fillText(this.hp, this.x, this.y - 10);
+    ctx.fillRect(this.x, this.y - 10, this.hp, 5);
   };
 
   this.start = () => {
@@ -448,6 +448,7 @@ function reloadGame() {
 
 function animateExplosion(ctx, x, y, w, h) {
   let n = 0;
+
   let animationInterval = setInterval(() => {
     if (n < 7) {
       ctx.clearRect(x, y, w, h);
